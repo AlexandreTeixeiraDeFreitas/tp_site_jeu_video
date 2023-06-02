@@ -1,25 +1,35 @@
-/* GameCard.css */
-
 .game-card {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
+    max-height: 95%;
   }
+  
   
   .game-card:hover {
     transform: translateY(-4px);
   }
   
-  .game-card img {
+  .game-card_img img {
     width: 100%;
-    height: auto;
+    max-height: 500px;
     border-radius: 8px;
     margin-bottom: 10px;
+  }
+  .game-card .game-card_img {
+    width: 100%;
+    height: 500px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .game-card h2 {

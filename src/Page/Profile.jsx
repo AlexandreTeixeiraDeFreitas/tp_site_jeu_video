@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import GameCard from '../components/GameCard';
+import GameCard from '../components/GameCard.jsx';
 import '../styles/Profile.css';
 
 const Profile = () => {

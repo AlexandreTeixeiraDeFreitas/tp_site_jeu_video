@@ -66,10 +66,12 @@ const GameCard = ({ game }) => {
 
   return (
     <Link to={`/game/${game.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-      <div className="game-card" key={game.id}>
+      <div className="game-card">
+        <h2>{game.name}</h2>
         <div>
-          <img src={game.background_image} alt={game.name} />
-          <h2>{game.name}</h2>
+          <div className="game-card_img">
+            <img src={game.background_image} alt={game.name} />
+          </div>
           <p>{game.platforms.map(platform => platform.platform.name).join(", ")}</p>
         </div>
         <div>
@@ -107,3 +109,4 @@ const GameCard = ({ game }) => {
 };
 
 export default GameCard;
+  
