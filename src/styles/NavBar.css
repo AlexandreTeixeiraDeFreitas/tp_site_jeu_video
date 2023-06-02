@@ -1,5 +1,5 @@
 .navbar {
-    background-color: #333;
+    background-color: #333333;
     color: #fff;
     display: flex;
     align-items: center;
@@ -21,7 +21,7 @@
   }
   
   .navbar-item {
-    margin-left: 10px;
+    margin-left: 30px;
   }
   
   .navbar-item a {
