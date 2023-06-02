@@ -30,7 +30,7 @@ const Search = () => {
   };
 
   useEffect(() => {
-    setPage(1);
+    loadMoreGames();
     fetchGames();
   }, []);
 
