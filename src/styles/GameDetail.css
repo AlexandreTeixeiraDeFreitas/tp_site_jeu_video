@@ -1,0 +1,60 @@
+/* GameDetail.css */
+
+.game-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .game-detail img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .game-detail h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .game-detail p {
+    font-size: 16px;
+    color: #555;
+    text-align: justify;
+    margin-bottom: 10px;
+  }
+  
+  .game-detail .description {
+    font-size: 16px;
+    color: #555;
+    text-align: justify;
+    margin-bottom: 20px;
+    border: 1px solid #999;
+    padding: 20px;
+  }
+  
+  .game-detail .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .game-detail .icon-button {
+    font-size: 24px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .game-detail .icon-button.favorite.active {
+    color: #ffe600;
+  }
+  
+  .game-detail .icon-button.finished.active {
+    color: #ff0000;
+  }
+  
