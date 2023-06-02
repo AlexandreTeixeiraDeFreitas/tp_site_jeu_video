@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import GameCard from '../components/GameCard.jsx';
 import '../styles/Search.css';
@@ -9,26 +9,7 @@ const Search = () => {
   const [page, setPage] = useState(1);
   const apiKey = import.meta.env.VITE_APP_API_KEY;
 
-  useEffect(() => {
-    const fetchGames = async () => {
-      const response = await axios.get(
-        `https://api.rawg.io/api/games?key=${apiKey}&search=${searchTerm}&ordering=-rating&page=${page}&page_size=20`
-      );
-      setGames(prevGames => [...prevGames, ...response.data.results]);
-    };
-
-    fetchGames();
-  }, [searchTerm, page]);
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    setGames([]);
-    setPage(1);
-    fetchGames();
-  };
-
   const fetchGames = () => {
-    if (searchTerm.trim() !== '') {
       axios
         .get(
           `https://api.rawg.io/api/games?key=${apiKey}&search=${searchTerm}&ordering=-rating&page=${page}&page_size=20`
@@ -39,11 +20,23 @@ const Search = () => {
         .catch((error) => {
           console.log(error);
         });
-    }
   };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setGames([]);
+    setPage(1);
+    fetchGames();
+  };
+
+  useEffect(() => {
+    setPage(1);
+    fetchGames();
+  }, []);
 
   const loadMoreGames = () => {
     setPage(prevPage => prevPage + 1);
+    fetchGames();
   };
 
   return (
@@ -62,16 +55,18 @@ const Search = () => {
       </form>
       <div className="search-results">
         <h2>Search Results</h2>
-        <div className="game-card-list">
+        <div className="game-cards-container">
           {games.map((game) => (
             <GameCard key={game.id} game={game} />
           ))}
         </div>
-      </div>
-      <div className="load-more-container">
-        <button className="load-more-button" onClick={loadMoreGames}>
-          Load More
-        </button>
+        {games.length >= 20 && (
+          <div className="load-more-container">
+            <button className="load-more-button" onClick={loadMoreGames}>
+              Load More
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
