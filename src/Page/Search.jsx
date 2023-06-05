@@ -15,6 +15,7 @@ const Search = () => {
           `https://api.rawg.io/api/games?key=${apiKey}&search=${searchTerm}&ordering=-rating&page=${page}&page_size=20`
         )
         .then((response) => {
+          console.log(response.data.results);
           setGames(prevGames => [...prevGames, ...response.data.results]);
         })
         .catch((error) => {
@@ -31,7 +32,6 @@ const Search = () => {
 
   useEffect(() => {
     loadMoreGames();
-    fetchGames();
   }, []);
 
   const loadMoreGames = () => {
