@@ -1,68 +1,89 @@
 .game-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-    max-height: 95%;
-  }
-  
-  
-  .game-card:hover {
-    transform: translateY(-4px);
-  }
-  
-  .game-card_img img {
-    width: 100%;
-    max-height: 500px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-  }
-  .game-card .game-card_img {
-    width: 100%;
-    height: 500px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .game-card h2 {
-    font-size: 18px;
-    
-  }
-  
-  .game-card p {
-    font-size: 14px;
-    color: #888;
-    margin-bottom: 10px;
-  }
-  
-  .favorite-button {
-    font-size: 24px;
-    color: #888;
-    cursor: pointer;
-    margin-right: 10px;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  .favorite-button.filled {
-    color: #ffe600;
-  }
-  
-  .finished-button {
-    font-size: 24px;
-    cursor: pointer;
-    margin-right: 10px;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  .finished-button.filled-banner {
-    color: #f44336;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  max-height: 95%;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+}
+
+.game-card_img {
+  position: relative;
+  width: 100%;
+  min-width: 250px;
+  height: 500px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-card_img img {
+  width: 100%;
+  max-height: 500px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.game-card_info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.game-card_img:hover .game-card_info {
+  opacity: 1;
+}
+
+.game-card h2 {
+  font-size: 18px;
+}
+
+.game-card p {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.favorite-button {
+  font-size: 24px;
+  color: #888;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: color 0.3s ease-in-out;
+}
+
+.favorite-button.filled {
+  color: #ffe600;
+}
+
+.finished-button {
+  font-size: 24px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: color 0.3s ease-in-out;
+}
+
+.finished-button.filled-banner {
+  color: #f44336;
+}

@@ -5,11 +5,14 @@ import flagBannerFill from '@iconify/icons-ph/flag-banner-fill';
 import flagBannerBold from '@iconify/icons-ph/flag-banner-bold';
 import favoriteStar from '@iconify/icons-fluent-mdl2/favorite-star';
 import favoriteStarFill from '@iconify/icons-fluent-mdl2/favorite-star-fill';
+import axios from 'axios';
 import '../styles/GameCard.css';
 
 const GameCard = ({ game }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
+  const [gameInfo, setGameInfo] = useState(null);
+  const apiKey = import.meta.env.VITE_APP_API_KEY;
 
   useEffect(() => {
     const favorites = localStorage.getItem('favorites') || '[]';
@@ -19,6 +22,19 @@ const GameCard = ({ game }) => {
     setIsFavorite(parsedFavorites.some(favorite => favorite.id === game.id));
     setIsFinished(parsedFinishedGames.some(finishedGame => finishedGame.id === game.id));
   }, [game]);
+
+  useEffect(() => {
+    const fetchGameInfo = async () => {
+      try {
+        const response = await axios.get(`https://api.rawg.io/api/games/${game.id}?key=${apiKey}`);
+        setGameInfo(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchGameInfo();
+  }, [game.id]);
 
   const handleAddToFavorites = (e) => {
     e.stopPropagation();
@@ -71,6 +87,13 @@ const GameCard = ({ game }) => {
         <div>
           <div className="game-card_img">
             <img src={game.background_image} alt={game.name} />
+            {gameInfo && (
+              <div className="game-card_info">
+                <p>Release Date: {gameInfo.released}</p>
+                <p>Developers: {gameInfo.developers && gameInfo.developers.map(developer => developer.name).join(", ")}</p>
+                <p>Rating: {gameInfo.rating}</p>
+              </div>
+            )}
           </div>
           <p>{game.platforms.map(platform => platform.platform.name).join(", ")}</p>
         </div>
@@ -109,4 +132,3 @@ const GameCard = ({ game }) => {
 };
 
 export default GameCard;
-  
