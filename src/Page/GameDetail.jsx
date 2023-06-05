@@ -42,7 +42,7 @@ const GameDetail = () => {
     localStorage.setItem('favorites', JSON.stringify(parsedFavorites));
     setIsFavorite(true);
   };
-
+ 
   const handleDeleteFromFavorites = () => {
     let favorites = localStorage.getItem('favorites') || '[]';
     let parsedFavorites = JSON.parse(favorites);
@@ -67,6 +67,7 @@ const GameDetail = () => {
     setIsFinished(false);
   };
 
+  
   return (
     <div className="game-detail">
       <img src={game.background_image} alt={game.name} />
