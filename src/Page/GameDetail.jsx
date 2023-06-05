@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import flagBannerFill from '@iconify/icons-ph/flag-banner-fill';
 import flagBannerBold from '@iconify/icons-ph/flag-banner-bold';
 import favoriteStar from '@iconify/icons-fluent-mdl2/favorite-star';
 import favoriteStarFill from '@iconify/icons-fluent-mdl2/favorite-star-fill';
+import parse from 'html-react-parser';
+import axios from 'axios';
 import '../styles/GameDetail.css';
 
 const GameDetail = () => {
@@ -38,7 +39,7 @@ const GameDetail = () => {
     let favorites = localStorage.getItem('favorites') || '[]';
     let parsedFavorites = JSON.parse(favorites);
     parsedFavorites.push(game);
-    localStorage.setItem("favorites", JSON.stringify(parsedFavorites));
+    localStorage.setItem('favorites', JSON.stringify(parsedFavorites));
     setIsFavorite(true);
   };
 
@@ -46,7 +47,7 @@ const GameDetail = () => {
     let favorites = localStorage.getItem('favorites') || '[]';
     let parsedFavorites = JSON.parse(favorites);
     parsedFavorites = parsedFavorites.filter((favorite) => favorite.id !== game.id);
-    localStorage.setItem("favorites", JSON.stringify(parsedFavorites));
+    localStorage.setItem('favorites', JSON.stringify(parsedFavorites));
     setIsFavorite(false);
   };
 
@@ -54,7 +55,7 @@ const GameDetail = () => {
     let finishedGames = localStorage.getItem('finishedGames') || '[]';
     let parsedFinishedGames = JSON.parse(finishedGames);
     parsedFinishedGames.push(game);
-    localStorage.setItem("finishedGames", JSON.stringify(parsedFinishedGames));
+    localStorage.setItem('finishedGames', JSON.stringify(parsedFinishedGames));
     setIsFinished(true);
   };
 
@@ -62,7 +63,7 @@ const GameDetail = () => {
     let finishedGames = localStorage.getItem('finishedGames') || '[]';
     let parsedFinishedGames = JSON.parse(finishedGames);
     parsedFinishedGames = parsedFinishedGames.filter((finishedGame) => finishedGame.id !== game.id);
-    localStorage.setItem("finishedGames", JSON.stringify(parsedFinishedGames));
+    localStorage.setItem('finishedGames', JSON.stringify(parsedFinishedGames));
     setIsFinished(false);
   };
 
@@ -70,38 +71,23 @@ const GameDetail = () => {
     <div className="game-detail">
       <img src={game.background_image} alt={game.name} />
       <h2>{game.name}</h2>
-      <p>Rating: {game.rating} ({game.ratings_count} votes)</p>
-      <div className="description" dangerouslySetInnerHTML={{ __html: 'Synopsis: ' + game.description }} />
-      <p>Release Date: {game.released}</p>
-      <p>Developers: {game.developers && game.developers.map(developer => developer.name).join(", ")}</p>
-      <p>Genres: {game.genres && game.genres.map(genre => genre.name).join(", ")}</p>
-      <p>Platforms: {game.platforms && game.platforms.map(platform => platform.platform.name).join(", ")}</p>
+      <p>
+        Rating: {game.rating} ({game.ratings_count} votes)
+      </p>
+      <div className="description">{parse(`Synopsis: ${game.description}`)}</div>
+      <p>Developers: {game.developers && game.developers.map((developer) => developer.name).join(', ')}</p>
+      <p>Genres: {game.genres && game.genres.map((genre) => genre.name).join(', ')}</p>
+      <p>Platforms: {game.platforms && game.platforms.map((platform) => platform.platform.name).join(', ')}</p>
       <div className="button-container">
         {!isFavorite ? (
-          <Icon
-            className="icon-button favorite"
-            icon={favoriteStar}
-            onClick={handleAddToFavorites}
-          />
+          <Icon className="icon-button favorite" icon={favoriteStar} onClick={handleAddToFavorites} />
         ) : (
-          <Icon
-            className="icon-button favorite active"
-            icon={favoriteStarFill}
-            onClick={handleDeleteFromFavorites}
-          />
+          <Icon className="icon-button favorite active" icon={favoriteStarFill} onClick={handleDeleteFromFavorites} />
         )}
         {!isFinished ? (
-          <Icon
-            className="icon-button finished"
-            icon={flagBannerBold}
-            onClick={handleAddToFinishedGames}
-          />
+          <Icon className="icon-button finished" icon={flagBannerBold} onClick={handleAddToFinishedGames} />
         ) : (
-          <Icon
-            className="icon-button finished active"
-            icon={flagBannerFill}
-            onClick={handleDeleteFromFinishedGames}
-          />
+          <Icon className="icon-button finished active" icon={flagBannerFill} onClick={handleDeleteFromFinishedGames} />
         )}
       </div>
     </div>

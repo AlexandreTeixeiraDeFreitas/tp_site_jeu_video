@@ -86,7 +86,7 @@ const GameCard = ({ game }) => {
         <h2>{game.name}</h2>
         <div>
           <div className="game-card_img">
-            <img src={game.background_image} alt={game.name} />
+            <img src={game.background_image} alt={game.name} loading="lazy"/>
             {gameInfo && (
               <div className="game-card_info">
                 <p>Release Date: {gameInfo.released}</p>
