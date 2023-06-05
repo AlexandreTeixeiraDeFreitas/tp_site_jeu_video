@@ -23,18 +23,18 @@ const GameCard = ({ game }) => {
     setIsFinished(parsedFinishedGames.some(finishedGame => finishedGame.id === game.id));
   }, [game]);
 
-  useEffect(() => {
-    const fetchGameInfo = async () => {
-      try {
-        const response = await axios.get(`https://api.rawg.io/api/games/${game.id}?key=${apiKey}`);
-        setGameInfo(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchGameInfo = async () => {
+  //     try {
+  //       const response = await axios.get(`https://api.rawg.io/api/games/${game.id}?key=${apiKey}`);
+  //       setGameInfo(response.data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
 
-    fetchGameInfo();
-  }, [game.id]);
+  //   fetchGameInfo();
+  // }, [game.id]);
 
   const handleAddToFavorites = (e) => {
     e.stopPropagation();
@@ -87,11 +87,11 @@ const GameCard = ({ game }) => {
         <div>
           <div className="game-card_img">
             <img src={game.background_image} alt={game.name} loading="lazy"/>
-            {gameInfo && (
+            {game && (
               <div className="game-card_info">
-                <p>Release Date: {gameInfo.released}</p>
-                <p>Developers: {gameInfo.developers && gameInfo.developers.map(developer => developer.name).join(", ")}</p>
-                <p>Rating: {gameInfo.rating}</p>
+                <p>Release Date: {game.released}</p>
+                {/* <p>Developers: {gameInfo.developers && gameInfo.developers.map(developer => developer.name).join(", ")}</p> */}
+                <p>Rating: {game.rating}</p>
               </div>
             )}
           </div>
