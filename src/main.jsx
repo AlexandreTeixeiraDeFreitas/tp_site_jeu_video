@@ -8,6 +8,7 @@ import Search from './Page/Search.jsx';
 import NotFound from './Page/NotFound.jsx';
 import NavBar from './components/NavBar.jsx';
 import Footer from './components/Footer.jsx';
+import { Analytics } from '@vercel/analytics/react';
 // import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -22,6 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <Route path="*" element={<NotFound />} />
 </Routes>
 <Footer />
+<Analytics />
 </BrowserRouter>
 
 )
