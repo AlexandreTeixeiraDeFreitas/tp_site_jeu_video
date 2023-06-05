@@ -8,12 +8,12 @@ const Profile = () => {
   const badge = finishedGames.length >= 10 ? 'You have a badge for finishing 10 games!' : '';
 
   useEffect(() => {
-    const favorites = localStorage.getItem('favorites') || '[]';
-    const parsedFavorites = JSON.parse(favorites);
+    const favorites = localStorage.getItem('favorites');
+    const parsedFavorites = favorites ? JSON.parse(favorites) : [];
     setFavoriteGames(parsedFavorites);
 
-    const finished = localStorage.getItem('finishedGames') || '[]';
-    const parsedFinished = JSON.parse(finished);
+    const finished = localStorage.getItem('finishedGames');
+    const parsedFinished = finished ? JSON.parse(finished) : [];
     setFinishedGames(parsedFinished);
   }, []);
 
